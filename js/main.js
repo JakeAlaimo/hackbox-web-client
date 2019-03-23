@@ -1,7 +1,36 @@
-window.onload = init;
+let socket;
+window.onload = e => {
+    socket = io("https://hackbox-backend.herokuapp.com/");
+    socket.on("connect", onConnected);
+};
 
-function init()
+/**
+ * Invoked when the socket has connected to the server
+ */
+function onConnected()
 {
+    let codeInput = document.querySelector("#roomcode");
+    let joinButton = document.querySelector("#join");
+    let status = document.querySelector("#status");
+    joinButton.onclick = e => {
+        socket.emit("join", codeInput.value);
+    };
+    socket.on("join", success => {
+        if (success === true) {
+            status.textContent = `Joined room ${codeInput.value}`;
+            status.className = "success";
+        } 
+        else {
+            status.textContent = `Failed to join room ${codeInput.value}`;
+            status.className = "error";
+        }
+    });
+}
+
+
+
+
+/*   Testing code     
     let socket = io("https://hackbox-backend.herokuapp.com/");
     socket.on("connect", () => {
         const FAKE_ROOM = "AAAA";
@@ -21,7 +50,5 @@ function init()
                 console.log(`UNABLE TO JOIN ROOM ${FAKE_ROOM}`);
             }
         });
-
     });
-}
-
+*/

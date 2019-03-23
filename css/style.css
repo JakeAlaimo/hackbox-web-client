@@ -1,0 +1,17 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#join-form {
+    width: 25vw;
+    margin: 10px 10vw;
+    position: relative;
+    border-radius: 4px;
+}
+
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
