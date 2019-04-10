@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using Quobject.SocketIoClientDotNet.Client;
 using Newtonsoft.Json;
 
-public class ChatData
+public class RoomData
 {
-    public string id;
-    public string msg;
+    public string roomcode;
+    public string onlineNumber;
+    public List<string> playerList = new List<string>();
 };
 
 public class socketHandler : MonoBehaviour
@@ -20,8 +21,16 @@ public class socketHandler : MonoBehaviour
     //public Text uiChatLog = null;
 
     protected Socket socket = null;
-    protected List<string> chatLog = new List<string>();
+    //protected List<string> chatLog = new List<string>();
+    private string roomcode;
+    public Text code;
 
+
+
+    void Awake()
+    {
+
+    }
     void Destroy()
     {
         // DoClose();
@@ -30,29 +39,19 @@ public class socketHandler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        roomcode = "-1";
         DoOpen();
 
 
     }
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    lock (chatLog)
-    //    {
-    //        if (chatLog.Count > 0)
-    //        {
-    //            string str = uiChatLog.text;
-    //            foreach (var s in chatLog)
-    //            {
-    //                str = str + "\n" + s;
-    //            }
-    //            uiChatLog.text = str;
-    //            chatLog.Clear();
-    //        }
-    //    }
-    //}
+    void Update()
+    {
+
+    }
+
     void DoOpen()
     {
+        print("111");
         if (socket == null)
         {
             socket = IO.Socket(serverURL);
@@ -60,14 +59,34 @@ public class socketHandler : MonoBehaviour
                 socket.Emit("request room");
                 socket.On("request room", (data) =>
                 {
-                    string roomcode = data.ToString();
-                    print(roomcode);
+                    //Debug.Log(data.GetType());
+                   
+                    roomcode = data.ToString();
+                    print("222");
+                    print("test:"+roomcode);
+                    if (roomcode != "-1")
+                    {
+                        RoomData room = JsonUtility.FromJson<RoomData>(roomcode);
+                        print("in the update:" + room.roomcode);
+
+                        code.text = "Room code:" + room.roomcode;
+                    }
+                    //roomcode = JsonUtility.FromJson<string>(data);
+                    //Dictionary<string, string> data = new Dictionary<string, string>();
+
                 });
 
             });
+ 
+
 
         }
+
+
     }
+
+
+
 
     //void DoClose()
     //{
