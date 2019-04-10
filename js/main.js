@@ -28,7 +28,7 @@ function prepareMessageHandlers()
 {
     //enter this player into the game upon a valid join request
     socket.on("join room", payload => {
-        payloadObj = JSON.parse(payload);
+        let payloadObj = JSON.parse(payload);
 
         if(currentScreen == "join")
         {
@@ -41,7 +41,7 @@ function prepareMessageHandlers()
 
     //start the game upon a valid request
     socket.on("start game", payload => {
-        payloadObj = JSON.parse(payload);
+        let payloadObj = JSON.parse(payload);
 
         if(currentScreen == "wait" || currentScreen == "end")
         {
@@ -142,9 +142,12 @@ function prepareScreen(screen)
                 if(username.length > 0 && room.length == 4)
                 {
                     //create the join request payload
-                    let joinRequest = {roomcode: room};
+                    let joinRequest = {
+                        roomcode: room,
+                        username: username
+                    };
                     //next, emit the join request under the name 'join'
-                    socket.emit("join room", joinRequest);
+                    socket.emit("join room", JSON.stringify(joinRequest));
                 }
             };
         break;
@@ -156,7 +159,7 @@ function prepareScreen(screen)
                 //create the start request payload
                 let startRequest = {roomcode: room};
                 //next, emit the join request under the name 'start'
-                socket.emit("start game", startRequest);
+                socket.emit("start game", JSON.stringify(startRequest));
             };
         break;
 
