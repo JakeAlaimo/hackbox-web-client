@@ -13,6 +13,19 @@ let time;
 window.onload = e => {
     socket = io("https://hackbox-backend.herokuapp.com/");
 
+    //once the socket has connected, set up all server message handling
+    socket.on('connect', prepareMessageHandlers);
+
+    //load up the join screen
+    changeScreen("join");
+};
+
+/*
+ * Called upon successful socket.io connection. 
+ * Prepares the client to handle all messages from the server via callbacks.
+ */
+function prepareMessageHandlers()
+{
     //enter this player into the game upon a valid join request
     socket.on("join room", payload => {
         payloadObj = JSON.parse(payload);
@@ -57,10 +70,7 @@ window.onload = e => {
             changeScreen("end");
         }
     });
-
-    //load up the join screen
-    changeScreen("join");
-};
+}
 
 /*
  * Asynchronously loads and sets up each of the main game screens.
