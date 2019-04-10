@@ -136,7 +136,7 @@ function prepareScreen(screen)
         case "join":
             document.querySelector("#in3").onclick = function(){
                 username = document.querySelector("#in2").value;
-                room = document.querySelector("#in1").value;
+                room = document.querySelector("#in1").value.toUpperCase();
 
                 //send a message to the server requesting a room join
                 if(username.length > 0 && room.length == 4)
