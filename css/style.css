@@ -15,3 +15,179 @@ body {
 .error {
     color: red;
 }
+
+/*General Styles ------------------------------------------------------------------------ */
+html
+{
+    height: 100%;
+}
+body
+{
+    min-height: 100%;
+    margin: 0;
+}
+
+.centerChild
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.username
+{
+    position: absolute;
+    width: 100%;
+    height: 8%;
+
+    min-height: 50px;
+    text-align: center;
+
+    border-bottom: 1px solid black;
+}
+.username h1
+{
+    margin: 0;
+}
+
+.staticMessage
+{
+    position: absolute;
+    
+    width: 100%;
+    height: 77%;
+    top: 8%;
+}
+.staticMessage p
+{
+    margin: 0;
+}
+
+/*Joining Specific Styles --------------------------------------------------------------- */
+
+.joinFields
+{
+    position: absolute;
+    width: 60%;
+    height: 100%;
+
+    left:20%;
+}
+
+.joinFields input
+{
+    position:absolute;
+    width: 100%;
+    height: 5%;
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing:border-box
+}
+
+#in1
+{
+    top: 35%;
+}
+
+#in2
+{
+    top: 41%;
+}
+
+#in3
+{
+    top: 47%;
+}
+
+/*Waiting/Game End Specific Styles ------------------------------------------------------ */
+
+input[type="button"].startGame
+{
+    position: absolute;
+    width:100%;
+    height: 15%;
+    top:85%;
+}
+
+/*Competing Specific Styles ------------------------------------------------------------- */
+
+.competeArea
+{
+    position: absolute;
+    top: 8%;
+    width:100%;
+    height:92%;
+}
+
+.competeArea #prompt
+{
+    position:absolute;
+    width:100%;
+    margin: 0;
+    text-align:center;
+
+    top: 18%;
+}
+
+.competeArea input[type="text"]
+{
+    position: absolute;
+    width:60%;
+    height: 5%;
+    top:35%;
+    left:20%;
+
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.competeArea input[type="button"]
+{
+    position: absolute;
+    width:25%;
+    height: 4%;
+    top:45%;
+    left: 37.5%;
+}
+
+/*Voting Specific Styles ---------------------------------------------------------------- */
+.votingArea
+{
+    position: absolute;
+    top: 8%;
+    width:100%;
+    height:92%;
+
+    flex-direction: row;
+}
+
+.voteOption
+{
+    position: absolute;
+    width:50%;
+    height:100%;
+}
+
+.voteOption p
+{
+    margin: 0;
+
+    /* block selection of the voting label */
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+#option1
+{
+    left:0%;
+    border-right: 1px solid black;
+}
+#option2
+{
+    left:50%;
+}
