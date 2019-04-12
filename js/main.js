@@ -204,6 +204,8 @@ function prepareScreen(screen)
 
                 let response = document.querySelector("input").value;
                 
+                document.querySelector("input").value = ""; //clear the input text
+
                 //send a request to the server to start the game
                 if(response.length > 0)
                 {
