@@ -173,24 +173,24 @@ function prepareScreen(screen)
                 //create the vote payload (a vote for player 1)
                 let vote = {roomcode: room, player: 0}; 
                 //next, emit the vote under the name 'vote'
-                socket.emit("vote", vote);
+                socket.emit("vote", JSON.stringify(vote));
             };
             //a vote for player 1
             document.querySelector("#option2").onclick = function(){
                 //create the vote payload (a vote for player 2)
                 let vote = {roomcode: room, player: 1}; 
                 //next, emit the vote under the name 'vote'
-                socket.emit("vote", vote);
+                socket.emit("vote", JSON.stringify(vote));
             };
         break;
         
         case "end":
             document.querySelector("h1").innerHTML = username;
             document.querySelector(".startGame").onclick = function(){
-                //create the start request payload
+                ///create the start request payload
                 let startRequest = {roomcode: room};
                 //next, emit the join request under the name 'start'
-                socket.emit("start game", startRequest);
+                socket.emit("start game", JSON.stringify(startRequest));
             };
 
             document.querySelector("p").innerHTML = winner + " has won!";
@@ -212,7 +212,7 @@ function prepareScreen(screen)
                     //create the submission payload
                     let submission = {roomcode: room, player: (Number)(username == player2), submission: response};
                     //next, emit the submission under the name 'submission'
-                    socket.emit("enter submission", submission);
+                    socket.emit("enter submission", JSON.stringify(submission));
                 }
             };
 
