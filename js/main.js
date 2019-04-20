@@ -70,6 +70,22 @@ function prepareMessageHandlers()
             changeScreen("end");
         }
     });
+
+    //attempt to get back in the game when a reconnect occurs
+    socket.on("reconnect", (attempt) => {
+        // Make sure we actually have a username and room first
+        if (username && room) {
+            if (username.length > 0 && room.length == 4) {
+                //create the join request payload
+                let rejoinRequest = {
+                    roomcode: room,
+                    username: username
+                };
+                //next, emit the rejoin request under the name 'rejoin room'
+                socket.emit("rejoin room", JSON.stringify(rejoinRequest));
+            }
+        }
+    });
 }
 
 /*
