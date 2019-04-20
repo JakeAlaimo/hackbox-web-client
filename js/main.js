@@ -82,7 +82,7 @@ function prepareMessageHandlers()
                     username: username
                 };
                 //next, emit the rejoin request under the name 'rejoin room'
-                socket.emit("rejoin room", JSON.stringify(rejoinRequest));
+                //socket.emit("rejoin room", JSON.stringify(rejoinRequest));
             }
         }
     });
