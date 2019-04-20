@@ -71,6 +71,11 @@ function prepareMessageHandlers()
         }
     });
 
+    socket.on("close room", () => {
+        alert("The room has been closed");
+        changeScreen("join");
+    });
+
     //attempt to get back in the game when a reconnect occurs
     socket.on("reconnect", (attempt) => {
         // Make sure we actually have a username and room first
