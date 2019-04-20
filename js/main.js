@@ -81,6 +81,7 @@ function prepareMessageHandlers()
                     roomcode: room,
                     username: username
                 };
+                alert("reconnecting");
                 //next, emit the rejoin request under the name 'rejoin room'
                 //socket.emit("rejoin room", JSON.stringify(rejoinRequest));
             }
