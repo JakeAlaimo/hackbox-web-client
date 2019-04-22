@@ -8,6 +8,7 @@ let player1, player2;
 let prompt;
 let percentage;
 let time;
+let gameStarted = false;
 
 
 window.onload = e => {
@@ -41,6 +42,7 @@ function prepareMessageHandlers()
 
     //start the game upon a valid request
     socket.on("start game", payload => {
+        gameStarted = true;
         let payloadObj = JSON.parse(payload);
 
         if(currentScreen == "wait" || currentScreen == "end")
@@ -175,12 +177,16 @@ function prepareScreen(screen)
 
         case "wait":
             document.querySelector("h1").innerHTML = username;
+            gameStarted = false;
             document.querySelector(".startGame").onclick = function(){
 
-                //create the start request payload
-                let startRequest = {roomcode: room};
-                //next, emit the join request under the name 'start'
-                socket.emit("start game", JSON.stringify(startRequest));
+                if (!gameStarted) {
+                    //create the start request payload
+                    let startRequest = {roomcode: room};
+                    //next, emit the join request under the name 'start'
+                    socket.emit("start game", JSON.stringify(startRequest));
+                }
+
             };
         break;
 
@@ -206,12 +212,15 @@ function prepareScreen(screen)
         break;
         
         case "end":
+            gameStarted = false;
             document.querySelector("h1").innerHTML = username;
             document.querySelector(".startGame").onclick = function(){
-                ///create the start request payload
-                let startRequest = {roomcode: room};
-                //next, emit the join request under the name 'start'
-                socket.emit("start game", JSON.stringify(startRequest));
+                if (!gameStarted) {
+                    ///create the start request payload
+                    let startRequest = {roomcode: room};
+                    //next, emit the join request under the name 'start'
+                    socket.emit("start game", JSON.stringify(startRequest));
+                }
             };
 
             document.querySelector("p").innerHTML = winner + " has won!";
