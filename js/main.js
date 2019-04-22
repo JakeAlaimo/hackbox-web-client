@@ -66,7 +66,7 @@ function prepareMessageHandlers()
     socket.on("timeout", (payload) => {
         if(currentScreen == "compete" || currentScreen == "vote")
         {
-            winner = JSON.parse(payload).winner;
+            winner = JSON.parse(payload).winner == 0 ? player1 : player2;
             changeScreen("end");
         }
     });
