@@ -63,10 +63,10 @@ function prepareMessageHandlers()
     socket.on("time changed", payload => time = JSON.parse(payload).time);
 
     //determine the winner and switch to the end screen on game end
-    socket.on("timeout", () => {
+    socket.on("timeout", (payload) => {
         if(currentScreen == "compete" || currentScreen == "vote")
         {
-            winner = (percentage < 0.5) ? player1 : player2;
+            winner = JSON.parse(payload).winner;
             changeScreen("end");
         }
     });
