@@ -40,12 +40,17 @@ function prepareMessageHandlers()
         }
     });
 
+    // When everybody's in, go to the tutorial screen
+    socket.on("everybody in", () => {
+        changeScreen("tutorial");
+    });
+
     //start the game upon a valid request
     socket.on("start game", payload => {
         gameStarted = true;
         let payloadObj = JSON.parse(payload);
 
-        if(currentScreen == "wait" || currentScreen == "end")
+        if(currentScreen == "wait" || currentScreen == "end" || currentScreen == "tutorial")
         {
             prompt = payloadObj.category;
             player1 = payloadObj.player1Name;
@@ -142,7 +147,9 @@ function getAddress(screen)
         case "compete":
             address = "compete.html";
         break;
-
+        case "tutorial":
+            address = "tutorial.html";
+        break;
         default:
             address = "error.html";
         break;
@@ -160,7 +167,6 @@ function prepareScreen(screen)
             document.querySelector("#in3").onclick = function(){
                 username = document.querySelector("#in2").value;
                 room = document.querySelector("#in1").value.toUpperCase();
-
                 //send a message to the server requesting a room join
                 if(username.length > 0 && room.length == 4)
                 {
@@ -183,8 +189,8 @@ function prepareScreen(screen)
                 if (!gameStarted) {
                     //create the start request payload
                     let startRequest = {roomcode: room};
-                    //next, emit the join request under the name 'start'
-                    socket.emit("start game", JSON.stringify(startRequest));
+                    //next, inform the server that everybody's in
+                    socket.emit("everybody in", JSON.stringify(startRequest));
                 }
 
             };
