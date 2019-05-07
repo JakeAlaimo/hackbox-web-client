@@ -108,8 +108,13 @@ body
 {
     top: 47%;
 }
+
 #logo{
-  width: 50%;
+  top: 22%;
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 /*Waiting/Game End Specific Styles ------------------------------------------------------ */
