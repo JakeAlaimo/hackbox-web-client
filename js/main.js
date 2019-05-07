@@ -79,8 +79,11 @@ function prepareMessageHandlers()
     });
 
     socket.on("close room", () => {
-        alert("The room has been closed");
-        changeScreen("join");
+        if(currentScreen != "join")
+        {
+            alert("The room has been closed");
+            changeScreen("join");
+        }
     });
 
     //attempt to get back in the game when a reconnect occurs
