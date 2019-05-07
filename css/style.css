@@ -47,7 +47,7 @@ body
     border-bottom: 1px solid black;
 
     /* block selection of the username */
-    -webkit-user-select: none; /* Safari */        
+    -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
@@ -60,7 +60,7 @@ body
 .staticMessage
 {
     position: absolute;
-    
+
     width: 100%;
     height: 77%;
     top: 8%;
@@ -109,6 +109,11 @@ body
     top: 47%;
 }
 
+#logo
+{
+  top:27%;
+  width:100%;
+}
 /*Waiting/Game End Specific Styles ------------------------------------------------------ */
 
 input[type="button"].startGame
@@ -183,7 +188,7 @@ input[type="button"].startGame
     margin: 0;
 
     /* block selection of the voting label */
-    -webkit-user-select: none; /* Safari */        
+    -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
