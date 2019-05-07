@@ -1,5 +1,5 @@
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Architects Daughter','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', cursive, Geneva, Verdana, sans-serif;
 }
 
 #join-form {
@@ -221,8 +221,10 @@ input[type="button"].startGame
 {
     left:0%;
     border-right: 1px solid black;
+    background-color: #359ec4;
 }
 #option2
 {
     left:50%;
+    background-color: #c44833;
 }
