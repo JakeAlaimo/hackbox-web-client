@@ -157,6 +157,27 @@ input[type="button"].startGame
     top:85%;
 }
 
+/*Tutorial Specific Styles ------------------------------------------------------ */
+.tutorial
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    
+   /* vertical-align: middle;*/
+    top: 50%;
+    
+}
+
+.tutorial p 
+{
+    width:100%;
+    position: absolute;
+    display: inline;
+    text-align: center;
+    transform: translateY(-50%);
+    margin: 0;
+}
 /*Competing Specific Styles ------------------------------------------------------------- */
 
 .competeArea
